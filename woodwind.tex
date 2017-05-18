@@ -1,19 +1,13 @@
-\documentclass[a4paper]{ltjsarticle}
-\usepackage{amsmath,amssymb,mathrsfs,braket}
+\documentclass[a4paper,uplatex,dvipdfmx]{jsarticle}
+\usepackage{amsmath,amssymb,mathrsfs,bm,braket}
 % \usepackage{amsthm,amscd} %定理環境, 可換図式
 % \usepackage{ascmac} %screen, itembox環境
-\usepackage{graphicx,xcolor}
+% \usepackage{graphicx,xcolor}
+\usepackage[dvipdfmx]{graphicx,xcolor}
 \usepackage{fancyhdr,lastpage} %ヘッダー/フッター操作
 % \usepackage{makeidx} %索引
 \usepackage{hyperref} %ハイパーリンク
 % \hypersetup{colorlinks=true,linkcolor=blue,citecolor=green}
-
-% フォント
-\usepackage[no-math,ipaex]{luatexja-preset} % IPAexフォント
-\ltjsetparameter{jacharrange={-2}} % 非ASCII文字がすべて和文と解釈されるのを防ぐ
-\usepackage{unicode-math}
-\unimathsetup{math-style=ISO,bold-style=ISO}
-\setmathfont{LatinModernMath}
 
 % jsarticle用
 \renewcommand{\abstractname}{Abstract}
@@ -37,6 +31,14 @@
 	\renewcommand{\footrulewidth}{0.0pt} %デフォルト0.4pt
 	\renewcommand{\headrulewidth}{0.0pt} %デフォルト0.4pt
 
+\renewcommand{\r}{\bm{r}}
+\newcommand{\x}{\bm{x}}
+\renewcommand{\v}{\bm{v}}
+\newcommand{\p}{\bm{p}}
+\renewcommand{\k}{\bm{k}}
+\renewcommand{\u}{\bm{u}}
+\newcommand{\n}{\textbf{n}}
+
 \title{木管楽器の発音原理に関するノート}
 \author{H.~S.}
 \date{2017.5.18-}
@@ -57,7 +59,57 @@
 
 \subsection{Euler方程式}
 
-\subsection{波動方程式}
+音波の発生および伝播を議論する場合, 空気 (水でもよいが) の粘性は無視できる.
+また, 熱伝導も無視できるので, すべての運動は断熱的であり, 各流体要素の比エントロピー (単位質量あたりのエントロピー) は保存する.
+\begin{align*}
+	s = \mathrm{const.}
+\end{align*}
+従って音響学の範疇では媒質の状態は密度$\rho$および流体速度$\v$の$4$自由度によって記述される.
+
+媒質の運動は連続方程式
+\begin{align}
+	\frac{ \partial \rho }{ \partial t } + \v \cdot \nabla \rho = - \rho \nabla \cdot \v
+\end{align}
+およびEuler方程式
+\begin{align}
+	\frac{ \partial \v }{ \partial t } + ( \v \cdot \nabla ) \v = - \frac{ 1 }{ \rho } \nabla p
+\end{align}
+によって与えられる. $p$は流体の圧力であり, 流体運動が断熱的であるという仮定のもとでは密度$\rho$だけの関数である: $p = p ( \rho )$.
+
+理想気体の状態方程式が成り立つならば, 圧力$p$は断熱指数 (比熱比) $\gamma$を用いて
+\begin{align}
+	p = p_0 \left( \frac{ \rho }{ \rho_0 } \right)^\gamma \label{eos}
+\end{align}
+と表示できる. $\rho_0$, $p_0$は流体静止時 (つまり音波がないとき) の密度, 圧力である.
+\ref{sec: wave equation}節で示すように流体中を伝播する音波の速度 (音速) $c_s$は
+\begin{align}
+	c_s = \sqrt{ \frac{ d p }{ d \rho } }
+\end{align}
+で与えられるので, 式(\ref{eos})を代入すると
+\begin{align}
+	c_s^2 = \gamma \frac{ p_0 }{ \rho_0 } \left( \frac{ \rho }{ \rho_0 } \right)^\gamma
+\end{align}
+となる. 特に$\rho = \rho_0$で評価すると$c_s^2 |_0 = \gamma p_0 / \rho_0$である.
+
+
+\subsection{波動方程式}\label{sec: wave equation}
+
+密度$\rho_0$, 圧力$p_0$の静的な配位にわずかな擾乱が加わるという状況を考える.
+この場合, 位置$\x$における時刻$t$の密度$\rho ( t, \x )$の代わりに, 無次元化された密度ゆらぎ$\delta$および無次元速度$\u$を用いるのが便利である. その定義は
+\begin{align}
+	\delta ( t, \x ) := \frac{ \rho ( t, \x ) - \rho_0 }{ \rho_0 } , \ \ \u ( t, \x ) = \frac{ \v ( t, \x ) }{ c_s }
+\end{align}
+であり (以下$c_s |_0$を単に$c_s$と書く), いま$\delta$および$\u$は$1$よりずっと小さな量なので, これらの量について$2$次以上の項は無視してよい.
+その近似では連続方程式およびEuler方程式は
+\begin{align}
+	\frac{ \partial \delta }{ \partial t } + c_s \nabla \cdot \u = 0 , \ \
+	\frac{ \partial \u }{ \partial t } + c_s \nabla \delta = 0
+\end{align}
+となり, 速度$\u$を消去すると波動方程式
+\begin{align}
+	\left( \frac{ \partial^2 }{ \partial t^2} - c_s^2 \nabla^2 \right) \delta = 0
+\end{align}
+に到達する.
 
 
 \section{閉管の固有振動}
