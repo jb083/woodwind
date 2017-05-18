@@ -21,6 +21,13 @@
 \addtolength{\topmargin}{-\headsep}     % ヘッダの分だけ本文領域を移動させる
 \addtolength{\textheight}{-4.4truecm}    % 下の余白も20mmに
 
+%式番号にセクション番号を追加
+\makeatletter
+	\renewcommand{\theequation}{%
+	\thesection.\arabic{equation}}
+	\@addtoreset{equation}{section}
+\makeatother
+
 \pagestyle{fancy}
 	\lhead{}
 	\chead{}
@@ -113,6 +120,23 @@
 
 
 \section{閉管の固有振動}
+
+\subsection{固有振動の一般論}
+
+媒質のゆらぎに関して線型近似が適用できる範囲では, 密度ゆらぎ$\delta ( t, \x )$を次の形に分解することができる\footnote{モード分解の可能性に関する議論はFourier級数論
+(または関数解析) の範疇である. ここでは単にこの結果を承認する.}.
+\begin{align}
+	\delta ( t, \x ) = \sum_i \cos ( \omega_i t + \varphi_i ) \delta_i ( \x )
+\end{align}
+$i$は解のモードを指定するラベルで, 具体的な問題に応じて連続値または離散値を取る.
+また$\omega_i$はモード$i$の振動数, $\varphi_i$はモードの初期位相である. $\delta_i ( \x )$をモード$i$の固有関数と呼ぶ.
+
+特定モード$i$の解$\cos ( \omega_i + \varphi_i ) \delta_i ( \x )$を波動方程式に代入すると
+\begin{align}
+	( \omega_i^2 + c_s^2 \nabla ) \delta_i ( \x ) = 0
+\end{align}
+というHelmholtz方程式が得られる. これを問題に応じた境界条件のもとで解くことで,
+振動数$\omega_i$および固有関数$\delta_i ( \x )$が確定する. これを具体的に実行することがこの節および次節の主要な問題である.
 
 \subsection{方形管の固有振動}
 
