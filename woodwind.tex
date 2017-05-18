@@ -1,0 +1,90 @@
+\documentclass[a4paper]{ltjsarticle}
+\usepackage{amsmath,amssymb,mathrsfs,braket}
+% \usepackage{amsthm,amscd} %定理環境, 可換図式
+% \usepackage{ascmac} %screen, itembox環境
+\usepackage{graphicx,xcolor}
+\usepackage{fancyhdr,lastpage} %ヘッダー/フッター操作
+% \usepackage{makeidx} %索引
+\usepackage{hyperref} %ハイパーリンク
+% \hypersetup{colorlinks=true,linkcolor=blue,citecolor=green}
+
+% フォント
+\usepackage[no-math,ipaex]{luatexja-preset} % IPAexフォント
+\ltjsetparameter{jacharrange={-2}} % 非ASCII文字がすべて和文と解釈されるのを防ぐ
+\usepackage{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{LatinModernMath}
+
+% jsarticle用
+\renewcommand{\abstractname}{Abstract}
+\renewcommand{\figurename}{Fig.~}
+\renewcommand{\tablename}{Table }
+
+% 高さの設定
+\setlength{\textheight}{\paperheight}   % ひとまず紙面を本文領域に
+\setlength{\topmargin}{-5.4truemm}      % 上の余白を20mm(=1inch-5.4mm)に
+\addtolength{\topmargin}{-\headheight}  %
+\addtolength{\topmargin}{-\headsep}     % ヘッダの分だけ本文領域を移動させる
+\addtolength{\textheight}{-4.4truecm}    % 下の余白も20mmに
+
+\pagestyle{fancy}
+	\lhead{}
+	\chead{}
+	\rhead{}
+	\lfoot{}
+	\cfoot{--\ \thepage\ /\ \pageref*{LastPage}\ --}
+	\rfoot{}
+	\renewcommand{\footrulewidth}{0.0pt} %デフォルト0.4pt
+	\renewcommand{\headrulewidth}{0.0pt} %デフォルト0.4pt
+
+\title{木管楽器の発音原理に関するノート}
+\author{H.~S.}
+\date{2017.5.18-}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+	本記事は木管楽器の発音原理に関するノートである.
+	特に, 管内での固有振動モードの解析的導出がメインである.
+\end{abstract}
+
+\tableofcontents
+
+\section{疎密波の方程式}
+
+\subsection{Euler方程式}
+
+\subsection{波動方程式}
+
+
+\section{閉管の固有振動}
+
+\subsection{方形管の固有振動}
+
+\subsection{円形管の固有振動}
+
+\subsection{円錐管の固有振動}
+
+
+\section{開菅と半開菅の固有振動}
+
+\subsection{開菅の境界条件}
+
+\subsection{方形開菅の固有振動}
+
+\subsection{円形開菅の固有振動}
+
+\subsection{円形半開菅の固有振動}
+
+\subsection{円錐開管の固有振動}
+
+
+\section{管外への音の放射}
+
+
+\section{トーンホールの効果}
+
+\end{document}
