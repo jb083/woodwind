@@ -110,7 +110,7 @@
 その近似では連続方程式およびEuler方程式は
 \begin{align}
 	\frac{ \partial \delta }{ \partial t } + c_s \nabla \cdot \u = 0 , \ \
-	\frac{ \partial \u }{ \partial t } + c_s \nabla \delta = 0
+	\frac{ \partial \u }{ \partial t } + c_s \nabla \delta = 0 \label{euler}
 \end{align}
 となり, 速度$\u$を消去すると波動方程式
 \begin{align}
@@ -133,12 +133,62 @@ $i$は解のモードを指定するラベルで, 具体的な問題に応じて
 
 特定モード$i$の解$\cos ( \omega_i + \varphi_i ) \delta_i ( \x )$を波動方程式に代入すると
 \begin{align}
-	( \omega_i^2 + c_s^2 \nabla ) \delta_i ( \x ) = 0
+	( \omega_i^2 + c_s^2 \nabla ) \delta_i ( \x ) = 0 \label{helmholtz}
 \end{align}
 というHelmholtz方程式が得られる. これを問題に応じた境界条件のもとで解くことで,
 振動数$\omega_i$および固有関数$\delta_i ( \x )$が確定する. これを具体的に実行することがこの節および次節の主要な問題である.
 
+なお, 式(\ref{euler})から, 各モードの流体速度$\u_i$は密度ゆらぎ$\delta$から
+\begin{align}
+	\u_i = \frac{ c_s }{ \omega } i \nabla \delta_i ( \x ) \label{velocity}
+\end{align}
+により計算できる.
+
 \subsection{方形管の固有振動}
+
+図のような方形管内における振動モードについて考える. 密度ゆらぎ$\delta ( \x )$が
+\begin{align*}
+	\delta ( \x ) = X ( x ) Y ( y ) Z ( z )
+\end{align*}
+という変数分離形に書けると仮定しよう. これを式(\ref{helmholtz})に代入すると
+\begin{align*}
+	\frac{ 1 }{ X } \frac{ d^2 X }{ d x^2 } + \frac{ 1 }{ Y } \frac{ d^2 Y }{ d y^2 }
+	+ \frac{ 1 }{ Z } \frac{ d^2 Z }{ d z^2 } = - \frac{ \omega^2 }{ c_s^2 }
+\end{align*}
+となるが, 左辺第1項, 第2項, 第3項はそれぞれ$x$, $y$, $z$にのみ依存するから, それぞれ定数に等しい.
+それを$- k_x^2$, $- k_y^2$, $- k_z^2$とすると
+\begin{align*}
+	X ( x ) = \mathrm{const.} \times \cos ( k_x x + \varphi_x ) , \ \
+	Y ( y ) = \mathrm{const.} \times \cos ( k_y y + \varphi_y ) , \ \
+	Z ( z ) = \mathrm{const.} \times \cos ( k_z z + \varphi_z )
+\end{align*}
+と求まる. $\varphi_x$, $\varphi_y$, $\varphi_z$は初期位相で, 結局, 密度ゆらぎ固有関数$\delta ( \x )$は$A$を複素定数として
+\begin{align}
+	\delta_{\k} ( \x ) = \mathsf{Re} \{ A e^{ - \k \cdot \x } \} , \ \
+	\omega_{\k} = c_s | \k |
+\end{align}
+という形となる.
+
+いまの問題では, 管壁において管壁に垂直な方向への媒質の運動は禁じられている.
+式(\ref{velocity})により流体速度$\u$は
+\begin{align}
+	\u = \mathsf{Re} \left\{ - \frac{ c_s \k }{ \omega_{\k} } e^{i \k \cdot \x} \right\}
+\end{align}
+と書けるから, これが$x = 0, L$で常にゼロとなる条件は
+\begin{align*}
+	k_x = \frac{ n \pi }{ L }
+\end{align*}
+である ($n$は任意の整数). $y$, $z$方向も同様なので, 方形管の境界条件から,
+固有振動モードは$3$つの整数$\n = ( n_x, n_y, n_z )$によって特定でき, 密度ゆらぎは
+\begin{align}
+	\delta_{\n} ( \x ) = \mathsf{Re} \left\{ e^{i \k \cdot \x} \right\} , \ \
+	\k = \left( \frac{ n_x \pi }{ L }, \frac{ n_y \pi }{ \ell_y }, \frac{ n_z \pi }{ \ell_z } \right)
+\end{align}
+と書き下せる.
+
+方形管を楽器のモデルとみなす場合, $y$, $z$方向の振動モードは重要ではなく, $x$方向の振動だけが問題である.
+実際, 例えば
+
 
 \subsection{円形管の固有振動}
 
